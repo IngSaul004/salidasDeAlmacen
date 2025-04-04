@@ -1,59 +1,61 @@
-/* Reset básico */
+/* === RESET BÁSICO === */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body{
-    background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
-  }
- /* Barra superior */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === BODY === */
+body {
+  background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
+  font-size: 16px; /* Asegura tamaño base de texto */
+}
+
+/* === BARRA SUPERIOR === */
 #menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 100;
 }
 
 #menu h1 {
-    margin: 5px 10px;
-    font-size: 20px;
-    color: #444;
+  margin: 5px 10px;
+  font-size: 20px;
+  color: #444;
 }
 
 #menu span {
-    font-weight: bold;
-    color: #333;
+  font-weight: bold;
+  color: #333;
 }
 
 #menu button {
-    margin-left: 10px;
-    padding: 5px;
-    background: #7ea1c4;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  margin-left: 10px;
+  padding: 5px;
+  background: #7ea1c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 #menu button:hover {
-    background: #5f85a2;
+  background: #5f85a2;
 }
-  
 
- /* --- Estilos de formulario --- */
+/* === CONTENEDORES PRINCIPALES === */
 #formulario,
 #listado {
   padding: 20px;
@@ -61,226 +63,239 @@
   margin: auto;
   background-color: #f8f9fa;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-top: 100px; /* Aumenta el margen superior aquí */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
 }
-  
-  #formulario form,
-  #listado form {
-    display: grid;
-    gap: 10px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 100%;
-  }
-  
-  input:focus,
-  select:focus {
-    outline: none;
-    border-color: #003366;
-  }
-  
-  /* --- Botones --- */
-  button {
-    padding: 10px 15px;
-    background-color: #0055a5;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0077cc;
-  }
-  
-  /* --- Tabla de listado --- */
-  #verListado {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  #verListado th,
-  #verListado td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  #verListado th {
-    background-color: #0055a5;
-    color: white;
-  }
-  
-  /* --- Modal / Popup (esconder por defecto) --- */
-  #listado,
-  #imprimirListado {
-    display: none; /* Se mantiene oculto hasta que se active */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    z-index: 1001;
-    width: 90%;
-    max-width: 800px;
-    overflow: auto;
-    max-height: 90vh;
-  }
-  
-  #listado h1,
-  #imprimirListado h1 {
-    margin-bottom: 20px;
-    color: #444;
-  }
-  
-  #listado form,
-  #imprimirListado .contenidoLista {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  #listado input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  /* Botones dentro de popups */
-  #imprimirListado button,
-  #listado button {
-    padding: 10px;
-    background-color: #0055a5;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  #imprimirListado button:hover,
-  #listado button:hover {
-    background-color: #0077cc;
-  }
-  
-  /* --- Footer --- */
-  #footer {
-    color: rgb(0, 0, 0);
-    padding: 10px;
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  footer span {
-    margin-right: 10px; /* Espacio entre el texto y la imagen */
-    cursor: pointer;
-  }
-  
-  #footer img {
-    height: auto;
-    max-height: 20px;
-    width: auto;
-    max-width: 100%;
-    margin-bottom: 0px;
-    object-fit: contain;
-  }
 
-  /* --- Estilos para el popup de contacto --- */
+/* === FORMULARIO GENERAL === */
+#formulario form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #003366;
+}
+
+/* === BOTONES GENERALES === */
+button {
+  padding: 10px 15px;
+  background-color: #0055a5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0077cc;
+}
+
+/* === FORMULARIO LISTADO === */
+#listado {
+  display: none; /* Lo ocultamos por defecto */
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#listado input,
+#listado button {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+#listado button {
+  background-color: #0055a5;
+  color: white;
+  transition: background 0.3s;
+}
+
+#listado button:hover {
+  background-color: #0077cc;
+}
+
+/* === IMPRIMIR LISTADO === */
+#imprimirListado {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+}
+
+#contenidoLista {
+  margin: 20px 0;
+}
+
+#imprimirListado button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #7ea1c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+#imprimirListado button:hover {
+  background-color: #5f85a2;
+}
+
+/* === FOOTER === */
+#footer {
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+footer span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#footer img {
+  height: auto;
+  max-height: 20px;
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 0px;
+  object-fit: contain;
+}
+
+/* === POPUP DE CONTACTO === */
 .popup {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 25px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 350px;
-    border: 1px solid #ccc;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 350px;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .popup h2 {
-    margin-bottom: 15px;
-    font-size: 20px;
-    color: #333;
-    width: 100%;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
 }
 
 .popup p {
-    margin: 5px 0;
-    font-size: 16px;
-    color: #444;
-    width: 100%;
-    word-break: break-word;
+  margin: 5px 0;
+  font-size: 16px;
+  color: #444;
+  word-break: break-word;
 }
 
 .popup button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 14px;
-    background-color: #7ea1c4;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    align-self: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #7ea1c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .popup button:hover {
-    background-color: #5f85a2;
+  background-color: #5f85a2;
 }
 
-
-/* Fondo oscuro detrás del popup */
+/* === OVERLAY DEL POPUP === */
 .overlay {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0; 
-    left: 0;
-    width: 100vw; 
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-  
-  /* --- Responsive --- */
-  @media (max-width: 768px) {
-    #menu {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    #formulario {
-      margin-top: 180px;
-      width: 90%;
-    }
-  
-    #listado {
-      width: 95%;
-    }
+
+/* === ESTILOS DE LA TABLA === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #0055a5;
+  color: white;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  #menu {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
+  #formulario {
+    margin-top: 180px;
+    width: 90%;
+  }
+
+  #listado {
+    width: 95%;
+  }
+}
