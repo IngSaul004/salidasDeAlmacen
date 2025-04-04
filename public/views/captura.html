@@ -3,9 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/captura.css">
     <title>Generar Salida</title>
 </head>
 <body>
-    <h1 style="color: black; font-family: Arial, Helvetica, sans-serif; text-align: center;">MANTENIMIENTO</h1>
+<div id="menu">
+<h1>Generar Salida</h1>
+<h1>Bienvenido: <span id="usuario"></span></h1>
+<h3>Folio:<span id="folio"></span></h3>
+<button id="folioNuevo">Nuevo Folio</button>
+<button id="cerrarSesion">Cerrar Sesion</button>
+</div>
+<div id="formulario">
+    <form id="form">
+        <label for="nombreChofer">Nombre Chofer</label>
+        <input type="text" name="nombreChofer" id="nombreChofer" placeholder="Ingresa el nombre del chofer" required>
+        <label for="cliente">Cliente:</label>
+        <select id="listaCliente">
+            <option value="0">Selecciona el cliente</option>
+        </select>
+        <label for="direccionCliente">Direccion de entrega:</label>
+        <input type="text" id="direccionCliente">
+        <label for="atencionA">Con atencion a:</label>
+        <input type="text" id="atencionA" placeholder="Ingresa texto" required>
+        <label for="numeroPedido">N° Pedido: </label>
+        <input type="text" id="numeroPedido" placeholder="Ingresa el N° pedido" required>
+        <label for="quienSolicita">Quien solicita:</label>
+        <input type="text" id="quienSolicita" placeholder="Ingresa quien solicita" required>
+        <h2>Motivo de salida</h2>
+        <input type="radio" id="traspaso" value="Traspaso">Traspaso
+        <input type="radio" id="venta" value="Venta">Venta
+        <input type="radio" id="maquila" value="Maquila">Maquila
+        <input type="radio" id="otros" value="Otros">Otros
+        <input type="text" id="otros" placeholder="Ingresa otros" disabled>
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" id="observaciones" placeholder="Ingresa tu observacion">
+        <button id="guardar">Guardar</button>
+    </form>
+</div>
+<div id="listado">
+    <form id="listado">
+        <h1>lista de materiales</h1>
+        <label for="codigo">Codigo:</label>
+        <input type="text" id="codigo" placeholder="Ingresa el codigo">
+        <label for="descripcionMaterial">Descripcion: </label>
+        <input type="text" id="descripcionMaterial" placeholder="Ingresa descripcion de material">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" placeholder="Ingresa la cantidad">
+        <label for="um">Um: </label>
+        <input type="text" id="um" placeholder="ingresa unidad de medida">
+        <label for="observacionLista">Observacion:</label>
+        <input type="text" id="observacionLista" placeholder="Ingresa la observacion">
+        <button id="verLista">Ver listado</button>
+    </form>
+</div>
+<div class="imprimirListado" id="imprimirListado">
+    <div class="contenidoLista" id="contenidoLista">
+        <h1>Salida De Material</h1>
+        <table id="verListado">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cantidad</th>
+                    <th>U/M</th>
+                    <th>Descripcion</th>
+                    <th>Código</th>
+                    <th>Observacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <button id="imprimir">Imprimir</button>
+        <button id="borrarMaterial">Borrar Material</button>
+        <button id="regresar">Regresar</button>
+    </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+  <div class="popup" id="popup">
+    <h2>Contacto Administradores</h2>
+    <p>📧 saul_rivera@ider.mx</p>
+    <p>📧 juan_llamas@ider.mx</p>
+    <button id="cerrar-btn">Cerrar</button>
+  </div>
+    <footer id="footer">
+        <span>Elaborado por Ing de Costos</span>
+        <img src="../img/CLUSTERtransparente.png" alt="Logo">
+    </footer>
 </body>
 </html>
