@@ -1,4 +1,3 @@
- // Añadimos el evento 'click' para el botón, en lugar de 'submit' en el formulario
  document.getElementById("login").addEventListener("click", async function(event) {
     event.preventDefault(); // Evita que el formulario recargue la página
 
@@ -18,3 +17,13 @@
         }
     }
   });
+
+  document.getElementById('footer').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "flex";
+ });
+
+ document.getElementById('cerrar-btn').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "none";
+ });

@@ -87,6 +87,7 @@ footer {
 
 footer span {
     margin-right: 10px; /* Espacio entre el texto y la imagen */
+    cursor: pointer;
 }
 
 footer img {
@@ -96,6 +97,72 @@ footer img {
     max-width: 100%;
     margin-bottom: 0px;
     object-fit: contain;
+}
+
+/* --- Estilos para el popup de contacto --- */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.popup h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+    width: 100%;
+}
+
+.popup p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #444;
+    width: 100%;
+    word-break: break-word;
+}
+
+.popup button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #7ea1c4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: center;
+}
+
+.popup button:hover {
+    background-color: #5f85a2;
+}
+
+
+/* Fondo oscuro detrás del popup */
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Media Queries para responsividad */

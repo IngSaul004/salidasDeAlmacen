@@ -16,3 +16,14 @@ document.getElementById('cerrarSesion').addEventListener('click', function(){
        
  });
  
+ document.getElementById('footer').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "flex";
+ });
+
+ document.getElementById('cerrar-btn').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "none";
+ });
+
+ 
