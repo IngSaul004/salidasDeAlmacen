@@ -7,10 +7,12 @@
 }
 
 /* === BODY === */
-body {
+html, body {
+  height: 100%;
+  min-height: 100vh;
   background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
-  font-size: 16px; /* Asegura tamaño base de texto */
 }
+
 
 /* === BARRA SUPERIOR === */
 #menu {
@@ -200,6 +202,7 @@ footer span {
 }
 
 /* === POPUP DE CONTACTO === */
+/* --- Estilos para el popup de contacto --- */
 .popup {
   display: none;
   position: fixed;
@@ -214,6 +217,8 @@ footer span {
   width: 90%;
   max-width: 350px;
   border: 1px solid #ccc;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   box-sizing: border-box;
 }
@@ -222,12 +227,14 @@ footer span {
   margin-bottom: 15px;
   font-size: 20px;
   color: #333;
+  width: 100%;
 }
 
 .popup p {
   margin: 5px 0;
   font-size: 16px;
   color: #444;
+  width: 100%;
   word-break: break-word;
 }
 
@@ -241,20 +248,22 @@ footer span {
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
+  align-self: center;
 }
 
 .popup button:hover {
   background-color: #5f85a2;
 }
 
-/* === OVERLAY DEL POPUP === */
+
+/* Fondo oscuro detrás del popup */
 .overlay {
   display: none;
   position: fixed;
-  z-index: 1001;
-  top: 0;
+  z-index: 1000;
+  top: 0; 
   left: 0;
-  width: 100vw;
+  width: 100vw; 
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }

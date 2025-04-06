@@ -12,8 +12,7 @@ document.getElementById('reporte').addEventListener('click', function(){
 
 document.getElementById('cerrarSesion').addEventListener('click', function(){
     fetch('/logout')
-    window.location.href = "/"; 
-       
+    window.location.href = "/";     
  });
  
  document.getElementById('footer').addEventListener('click', function(){

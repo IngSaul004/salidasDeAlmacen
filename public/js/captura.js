@@ -22,3 +22,9 @@ document.getElementById('footer').addEventListener('click', function(){
     const popup = document.getElementById('popup');
     popup.style.display = "none";
  });
+
+ document.getElementById('cerrarSesion').addEventListener('click', function(){
+    fetch('/logout');
+    window.location.href = "/";
+ });
+
