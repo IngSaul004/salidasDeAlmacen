@@ -109,11 +109,11 @@ button:hover {
   background-color: #0077cc;
 }
 
-/* === FORMULARIO LISTADO === */
+/* === CONTENEDOR DE LISTADO === */
 #listado {
-  display: none; /* Lo ocultamos por defecto */
+  display: none;
   flex-direction: column;
-  gap: 12px;
+  gap: 12px; /* Este gap ya está añadiendo separación entre los elementos */
   position: absolute;
   top: 0;
   left: 50%;
@@ -132,8 +132,13 @@ button:hover {
   border-radius: 6px;
   width: 100%;
 }
-
+/* === BOTONES EN #LISTADO === */
 #listado button {
+  padding: 12px; 
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 10px; /* Espacio debajo de cada botón */
   background-color: #0055a5;
   color: white;
   transition: background 0.3s;
@@ -142,6 +147,7 @@ button:hover {
 #listado button:hover {
   background-color: #0077cc;
 }
+
 
 /* === IMPRIMIR LISTADO === */
 #imprimirListado {
@@ -155,12 +161,14 @@ button:hover {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 500px;
+  width: 90%; /* Ajustar al 90% del ancho disponible */
+  max-width: 900px; /* Asegurar que no se haga más grande que 900px */
+  overflow: auto; /* Permite el desbordamiento en caso de muchos datos */
 }
 
 #contenidoLista {
   margin: 20px 0;
+  padding: 10px; /* Añadir algo de padding */
 }
 
 #imprimirListado button {
@@ -178,6 +186,7 @@ button:hover {
 #imprimirListado button:hover {
   background-color: #5f85a2;
 }
+
 
 /* === FOOTER === */
 #footer {
@@ -202,7 +211,6 @@ footer span {
 }
 
 /* === POPUP DE CONTACTO === */
-/* --- Estilos para el popup de contacto --- */
 .popup {
   display: none;
   position: fixed;

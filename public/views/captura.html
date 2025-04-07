@@ -10,39 +10,39 @@
 <div id="menu">
 <h1>Generar Salida</h1>
 <h1>Bienvenido: <span id="usuario"></span></h1>
-<h3>Folio:<span id="folio"></span></h3>
+<h3>Folio: <span id="folio"></span></h3>
 <button id="folioNuevo">Nuevo Folio</button>
 <button id="cerrarSesion">Cerrar Sesion</button>
 </div>
 <div id="formulario">
     <form id="form">
         <label for="nombreChofer">Nombre Chofer</label>
-        <input type="text" name="nombreChofer" id="nombreChofer" placeholder="Ingresa el nombre del chofer" required>
+        <input type="text" name="nombreChofer" id="nombreChofer" placeholder="Ingresa el nombre del chofer" required disabled>
         <label for="cliente">Cliente:</label>
-        <select id="listaCliente">
+        <select id="listaCliente" disabled>
             <option value="0">Selecciona el cliente</option>
         </select>
         <label for="direccionCliente">Direccion de entrega:</label>
-        <input type="text" id="direccionCliente">
+        <input type="text" id="direccionCliente" disabled required>
         <label for="atencionA">Con atencion a:</label>
-        <input type="text" id="atencionA" placeholder="Ingresa texto" required>
+        <input type="text" id="atencionA" placeholder="Ingresa texto" required disabled>
         <label for="numeroPedido">N° Pedido: </label>
-        <input type="text" id="numeroPedido" placeholder="Ingresa el N° pedido" required>
+        <input type="text" id="numeroPedido" placeholder="Ingresa el N° pedido" required disabled>
         <label for="quienSolicita">Quien solicita:</label>
-        <input type="text" id="quienSolicita" placeholder="Ingresa quien solicita" required>
+        <input type="text" id="quienSolicita" placeholder="Ingresa quien solicita" required disabled>
         <h2>Motivo de salida</h2>
         <label for="traspaso">Traspaso</label>
-        <input type="radio" id="traspaso"   name="motivoSalida"value="Traspaso">
+        <input type="radio" id="traspaso" name="motivoSalida"value="Traspaso" disabled>
         <label for="venta">Venta</label>
-        <input type="radio" id="venta"  name="motivoSalida" value="Venta">
+        <input type="radio" id="venta"  name="motivoSalida" value="Venta" disabled>
         <label for="maquila">Maquila</label>
-        <input type="radio" id="maquila"  name="motivoSalida" value="Maquila">
+        <input type="radio" id="maquila"  name="motivoSalida" value="Maquila" disabled>
         <label for="otros">Otros</label>
-        <input type="radio" id="otros" name="motivoSalida" value="Otros">
-        <input type="text" id="otros" placeholder="Ingresa otros" disabled>
+        <input type="radio" id="otros" name="motivoSalida" value="Otros" disabled>
+        <input type="text" id="otrosText" placeholder="Ingresa otros" disabled >
         <label for="observaciones">Observaciones:</label>
-        <input type="text" id="observaciones" placeholder="Ingresa tu observacion">
-        <button id="guardar">Guardar</button>
+        <input type="text" id="observaciones" placeholder="Ingresa tu observacion" disabled>
+        <button id="guardar" disabled>Guardar</button>
     </form>
 </div>
 <div id="listado">
@@ -58,6 +58,7 @@
         <input type="text" id="um" placeholder="ingresa unidad de medida">
         <label for="observacionLista">Observacion:</label>
         <input type="text" id="observacionLista" placeholder="Ingresa la observacion">
+        <button id="guardarLista">Guardar</button>
         <button id="verLista">Ver listado</button>
     </form>
 </div>
@@ -73,6 +74,7 @@
                     <th>Descripcion</th>
                     <th>Código</th>
                     <th>Observacion</th>
+                    <th>Borrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,10 +82,12 @@
             </tbody>
         </table>
         <button id="imprimir">Imprimir</button>
-        <button id="borrarMaterial">Borrar Material</button>
+        <button id="registrar">Registrar</button>
         <button id="regresar">Regresar</button>
     </div>
 </div>
+
+
 <div class="overlay" id="overlay"></div>
 
   <div class="popup" id="popup">

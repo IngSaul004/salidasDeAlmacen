@@ -14,6 +14,10 @@ document.getElementById('cerrarSesion').addEventListener('click', function(){
     fetch('/logout')
     window.location.href = "/";     
  });
+
+ document.getElementById('registrarCliente').addEventListener('click', function(){
+    window.location.href = "/Cliente" ;
+ });
  
  document.getElementById('footer').addEventListener('click', function(){
     const popup = document.getElementById('popup');

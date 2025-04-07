@@ -36,6 +36,20 @@ CREATE TABLE IF NOT EXISTS `folio` (
 
 -- Volcando datos para la tabla salidasalmacen.folio: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla salidasalmacen.materiales
+CREATE TABLE IF NOT EXISTS `materiales` (
+  `Folio` int(11) DEFAULT NULL,
+  `Codigo` varchar(50) DEFAULT NULL,
+  `Descripcion` text DEFAULT NULL,
+  `Cantidad` varchar(100) DEFAULT NULL,
+  `Um` varchar(4) DEFAULT NULL,
+  `Observacion` text DEFAULT NULL,
+  KEY `folioMaterial` (`Folio`),
+  CONSTRAINT `folioMaterial` FOREIGN KEY (`Folio`) REFERENCES `folio` (`Folio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla salidasalmacen.materiales: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla salidasalmacen.salidas
 CREATE TABLE IF NOT EXISTS `salidas` (
   `Folio` int(11) DEFAULT NULL,
@@ -48,11 +62,6 @@ CREATE TABLE IF NOT EXISTS `salidas` (
   `Quien_solicita` varchar(100) DEFAULT NULL,
   `Motivo_salida` text DEFAULT NULL,
   `Observaciones` text DEFAULT NULL,
-  `Codigo_material` varchar(50) DEFAULT NULL,
-  `Descripcion_material` text DEFAULT NULL,
-  `Cantidad` decimal(10,2) DEFAULT NULL,
-  `Unidad_medida` varchar(20) DEFAULT NULL,
-  `Observacion_material` text DEFAULT NULL,
   `Fecha` datetime DEFAULT NULL,
   KEY `folio` (`Folio`),
   KEY `usuario` (`Usuario_id`),
