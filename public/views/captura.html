@@ -45,23 +45,6 @@
         <button id="guardar" disabled>Guardar</button>
     </form>
 </div>
-<div id="listado">
-    <form id="formListado">
-        <h1>lista de materiales</h1>
-        <label for="codigo">Codigo:</label>
-        <input type="text" id="codigo" placeholder="Ingresa el codigo">
-        <label for="descripcionMaterial">Descripcion: </label>
-        <input type="text" id="descripcionMaterial" placeholder="Ingresa descripcion de material">
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" placeholder="Ingresa la cantidad">
-        <label for="um">Um: </label>
-        <input type="text" id="um" placeholder="ingresa unidad de medida">
-        <label for="observacionLista">Observacion:</label>
-        <input type="text" id="observacionLista" placeholder="Ingresa la observacion">
-        <button id="guardarLista">Guardar</button>
-        <button id="verLista">Ver listado</button>
-    </form>
-</div>
 <div class="imprimirListado" id="imprimirListado">
     <div class="contenidoLista" id="contenidoLista">
         <h1>Salida De Material</h1>
@@ -71,18 +54,27 @@
                     <th>#</th>
                     <th>Cantidad</th>
                     <th>U/M</th>
-                    <th>Descripcion</th>
+                    <th>Descripción</th>
                     <th>Código</th>
-                    <th>Observacion</th>
+                    <th>Observación</th>
                     <th>Borrar</th>
                 </tr>
             </thead>
             <tbody>
-                
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="cantidad[]" placeholder="Cantidad"></td>
+                    <td><input type="text" name="um[]" placeholder="U/M"></td>
+                    <td><input type="text" name="descripcion[]" placeholder="Descripción"></td>
+                    <td><input type="text" name="codigo[]" placeholder="Código"></td>
+                    <td><input type="text" name="observacion[]" placeholder="Observación"></td>
+                    <td><button class="borrarFila">Borrar</button></td>
+                </tr>
             </tbody>
         </table>
         <button id="imprimir">Imprimir</button>
         <button id="registrar">Registrar</button>
+        <button id="agregar">Agregar</button>
         <button id="regresar">Regresar</button>
     </div>
 </div>

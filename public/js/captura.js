@@ -4,6 +4,9 @@ let material = {};
 let arrayMaterial = [];
 let folioActual = 0;
 
+const imprimir = document.getElementById('imprimir');
+imprimir.disabled = true;
+
 //LLamada al endpoint de usuario para mostrarlo
 fetch('/ObtenerUsuario')
   .then(response => response.json())
@@ -32,13 +35,6 @@ fetch('/UltimoFolio')
   })
   .catch(error => console.error('Error al obtener el último folio:', error));
 
-
-
-document.getElementById('verLista').addEventListener('click', function (event){
-    event.preventDefault();
-    const listado = document.getElementById('imprimirListado');
-    listado.style.display = "flex";
-});
 
 document.getElementById('footer').addEventListener('click', function(){
     const popup = document.getElementById('popup');
@@ -161,10 +157,11 @@ document.getElementById('footer').addEventListener('click', function(){
         arrayForm1.push(datosForm1);
 
         alert('Datos guardados con éxito ✅, Ingresa el material');
-        const listado = document.getElementById('listado');
+        const listado = document.getElementById('imprimirListado');
         listado.style.display = "flex";
         const formulario = document.getElementById('formulario');
         formulario.style.display = "none";
+        console.log('Datos Generales Guardados', arrayForm1)
       } else {
         alert('No se pudo obtener el usuario de la sesión');
       }
@@ -175,108 +172,85 @@ document.getElementById('footer').addEventListener('click', function(){
     });
 });
 
-
-
-
-
- //funcion para registrar materiales 
-
- document.getElementById('guardarLista').addEventListener('click', function(event){
+ // Función para registrar materiales
+document.getElementById('registrar').addEventListener('click', function(event) {
   event.preventDefault();
-  const codigo = document.getElementById('codigo');
-  const descripcionMaterial = document.getElementById('descripcionMaterial');
-  const cantidad = document.getElementById('cantidad');
-  const um = document.getElementById('um');
-  const observacionLista = document.getElementById('observacionLista');
 
-  material = {
-    Codigo: codigo.value,
-    Descripcion: descripcionMaterial.value,
-    Cantidad: cantidad.value,
-    Um: um.value,
-    Observacion: observacionLista.value
-  };
-  arrayMaterial.push(material);
-  alert('Material Guardado');
-    codigo.value = "";
-    descripcionMaterial.value = "";
-    cantidad.value = "";
-    um.value = "";
-    observacionLista.value = "";
+  const confirmacion = confirm('¿Estás seguro de registrar?');
+
+  if (!confirmacion) {
+    console.log('Registro cancelado por el usuario.');
+    return; // Si el usuario cancela, se detiene todo
+  }
+
+  arrayMaterial.length = 0; // Limpiamos el array por si ya había algo
+
+  const filas = document.querySelectorAll('#verListado tbody tr');
+  filas.forEach(fila => {
+    const cantidad = fila.querySelector('input[name="cantidad[]"]').value.trim();
+    const um = fila.querySelector('input[name="um[]"]').value.trim();
+    const descripcion = fila.querySelector('input[name="descripcion[]"]').value.trim();
+    const codigo = fila.querySelector('input[name="codigo[]"]').value.trim();
+    const observacion = fila.querySelector('input[name="observacion[]"]').value.trim();
+
+    const material = {
+      Codigo: codigo,
+      Descripcion: descripcion,
+      Cantidad: cantidad,
+      Um: um,
+      Observacion: observacion
+    };
+
+    arrayMaterial.push(material);
+  });
+
+  console.log('Materiales registrados:', arrayMaterial);
+
+  // Deshabilita el botón registrar para evitar duplicados
+  document.getElementById('registrar').disabled = true;
+
+  // Activa el botón imprimir
+  document.getElementById('imprimir').disabled = false;
+});
+//funcion para agregar mas fila por los materiales
+ document.getElementById('agregar').addEventListener('click', function(event){
+  const tbody = document.querySelector('#verListado tbody');
+  const nuevaFila = document.createElement('tr');
+    
+            nuevaFila.innerHTML = `
+                <td></td>
+                <td><input type="text" name="cantidad[]" placeholder="Cantidad"></td>
+                <td><input type="text" name="um[]" placeholder="U/M"></td>
+                <td><input type="text" name="descripcion[]" placeholder="Descripción"></td>
+                <td><input type="text" name="codigo[]" placeholder="Código"></td>
+                <td><input type="text" name="observacion[]" placeholder="Observación"></td>
+                <td><button class="borrarFila">Borrar</button></td>
+            `;
+    
+            tbody.appendChild(nuevaFila);
+            actualizarNumeracion();
  });
-
+ 
+ //borrar fila
+ document.addEventListener('click', function (e) {
+  if (e.target && e.target.classList.contains('borrarFila')) {
+    e.preventDefault();
+    const fila = e.target.closest('tr');
+    if (fila) fila.remove();
+    actualizarNumeracion();
+  }
+});
  
 document.getElementById('regresar').addEventListener('click', function (event) {
   event.preventDefault();
-
   const listado = document.getElementById('imprimirListado');
   listado.style.display = "none";
+  const formulario = document.getElementById('formulario');
+  formulario.style.display = "grid";
+  arrayForm1 = [];
+  console.log('Datos generales borrados', arrayForm1);
 });
 
-
- // Función para mostrar los materiales en la tabla
-document.getElementById('verLista').addEventListener('click', function () {
-  const tbody = document.querySelector('#verListado tbody');
-  tbody.innerHTML = ''; // Limpiamos antes de agregar nuevos
-
-  arrayMaterial.forEach((material, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${material.Cantidad}</td>
-      <td>${material.Um}</td>
-      <td>${material.Descripcion}</td>
-      <td>${material.Codigo}</td>
-      <td>${material.Observacion}</td>
-      <td><button class="borrar" data-codigo="${material.Codigo}">Borrar</button></td>
-    `;
-    tbody.appendChild(row);
-  });
-
-  // Mostrar la tabla (por si está oculta)
-  document.getElementById('imprimirListado').style.display = 'block';
-});
-
-// Evento para borrar el material desde la tabla
-document.querySelector('#verListado tbody').addEventListener('click', function(event) {
-  if (event.target && event.target.classList.contains('borrar')) {
-    const codigoAEliminar = event.target.getAttribute('data-codigo');
-
-    // Buscar el índice del material con el código especificado
-    const indice = arrayMaterial.findIndex(material => material.Codigo === codigoAEliminar);
-
-    if (indice !== -1) {
-      // Eliminar el material del array
-      arrayMaterial.splice(indice, 1);
-      alert('Material eliminado con éxito.');
-
-      // Actualizar la tabla después de eliminar el material
-      mostrarMateriales();
-    } else {
-      alert('El material con el código especificado no se encuentra.');
-    }
-  }
-});
-
-// Función para mostrar los materiales en la tabla (actualizada después de eliminar)
-function mostrarMateriales() {
-  const tbody = document.querySelector('#verListado tbody');
-  tbody.innerHTML = ''; // Limpiar la tabla antes de agregar nuevos
-
-  arrayMaterial.forEach((material, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${material.Cantidad}</td>
-      <td>${material.Um}</td>
-      <td>${material.Descripcion}</td>
-      <td>${material.Codigo}</td>
-      <td>${material.Observacion}</td>
-      <td><button class="borrar" data-codigo="${material.Codigo}">Borrar</button></td>
-    `;
-    tbody.appendChild(row);
-  });
-}
 
 document.getElementById('imprimir').addEventListener('click', function() {
   // Crear el contenido para la impresión
@@ -428,7 +402,7 @@ Nombre y Firma de quien recibe
   }, 500);
 });
 
-document.getElementById('registrar').addEventListener('click', function () {
+document.getElementById('imprimir').addEventListener('click', function () {
   if (arrayForm1.length === 0 || arrayMaterial.length === 0) {
     alert("Faltan datos del formulario o materiales.");
     return;
@@ -469,6 +443,13 @@ document.getElementById('registrar').addEventListener('click', function () {
 }, 1000);
 });
 
+ // Función para actualizar los números de las filas
+ function actualizarNumeracion() {
+  const filas = document.querySelectorAll('#verListado tbody tr');
+  filas.forEach((fila, index) => {
+      fila.cells[0].textContent = index + 1;
+  });
+}
 
 
 
