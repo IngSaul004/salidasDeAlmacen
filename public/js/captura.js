@@ -209,6 +209,10 @@ document.getElementById('registrar').addEventListener('click', function(event) {
   // Deshabilita el botón registrar para evitar duplicados
   document.getElementById('registrar').disabled = true;
 
+  document.getElementById('agregar').disabled = true;
+
+  document.getElementById('regresar').disabled = true;
+
   // Activa el botón imprimir
   document.getElementById('imprimir').disabled = false;
 });
