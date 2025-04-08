@@ -1,0 +1,148 @@
+/* === RESET BÁSICO === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === BODY === */
+html, body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
+}
+
+/* === CONTENIDO PRINCIPAL (espacio debajo del menú fijo) === */
+main {
+  flex: 1;
+  padding-top: 80px; /* para dejar espacio al menú */
+}
+
+/* === BARRA SUPERIOR === */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 100;
+}
+
+#menu h1 {
+  margin: 5px 10px;
+  font-size: 20px;
+  color: #444;
+  flex: 1;
+}
+
+#menu span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* === BOTONES GENERALES === */
+button {
+  padding: 8px 16px;
+  background: #7ea1c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #5f85a2;
+}
+
+/* === FOOTER === */
+#footer {
+  color: #000;
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  padding: 10px;
+  background-color: transparent;
+}
+
+#footer span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#footer img {
+  height: auto;
+  max-height: 20px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* === POPUP DE CONTACTO === */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.popup h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+.popup p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #444;
+  word-break: break-word;
+}
+
+/* === OVERLAY OSCURO === */
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; 
+  left: 0;
+  width: 100vw; 
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  #menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #menu h1 {
+    font-size: 18px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

@@ -413,7 +413,7 @@ Firma Personal de Almacén General
 </div>
 <div class="firma-box">
 <div class="firma-line"></div>
-Nombre y Firma
+Nombre y Firma de quien recibe
 </div>
 </div>
     </body>

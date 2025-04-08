@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/edicion.css">
     <title>Modificar Salida</title>
 </head>
 <body>
-    <h1 style="color: black; font-family: Arial, Helvetica, sans-serif; text-align: center;">MANTENIMIENTO</h1>
+    <div id="menu">
+        <h1>Editar Salida</h1>
+        <h1>Bienvenido: <span id="usuario"></span></h1>
+        <select id="folios">
+            <option value="0">Selecciona un folio</option>
+        </select>
+        <button id="foliosBtn">Mostrar Folios</button>
+        <button id="cerrarSesion">Cerrar Sesion</button>
+    </div>
+    <main>
+        <div id="formularioVista">
+            <form id="form">
+                <label for="nombreChofer">Nombre Chofer</label>
+                <input type="text" name="nombreChofer" id="nombreChofer" required disabled>
+                <label for="cliente">Cliente:</label>
+                <input type="text" name="cliente" id="cliente" required disabled>
+                <label for="direccionCliente">Direccion de entrega:</label>
+                <input type="text" id="direccionCliente" disabled required>
+                <label for="atencionA">Con atencion a:</label>
+                <input type="text" id="atencionA"  required disabled>
+                <label for="numeroPedido">N° Pedido: </label>
+                <input type="text" id="numeroPedido" required disabled>
+                <label for="quienSolicita">Quien solicita:</label>
+                <input type="text" id="quienSolicita"  required disabled>
+                <label for="motivoSalida">Motivo de salida</label>
+                <input type="text" id="motivoSalida" disabled >
+                <label for="observaciones">Observacion</label>
+                <input type="text" id="observaciones" disabled>
+                <button id="guardar" disabled>Guardar</button>
+                <button id="editar" disabled>Editar</button>
+            </form>
+        </div>
+        <div class="imprimirListadoVista" id="imprimirListadoVista">
+            <div class="contenidoListaVista" id="contenidoListaVista">
+                <h1>Salida De Material</h1>
+                <table id="verListadoVista">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cantidad</th>
+                            <th>U/M</th>
+                            <th>Descripcion</th>
+                            <th>Código</th>
+                            <th>Observacion</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                <button id="imprimir">Imprimir</button>
+                <button id="editar">Editar</button>
+                <button id="regresar">Regresar</button>
+            </div>
+        </div>
+    </main>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+      <h2>Contacto Administradores</h2>
+      <p>📧 saul_rivera@ider.mx</p>
+      <p>📧 juan_llamas@ider.mx</p>
+      <button id="cerrar-btn">Cerrar</button>
+    </div>
+      <footer id="footer">
+          <span>Elaborado por Ing de Costos</span>
+          <img src="../img/CLUSTERtransparente.png" alt="Logo">
+      </footer>
 </body>
 </html>
