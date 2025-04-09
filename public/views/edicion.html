@@ -13,34 +13,29 @@
         <select id="folios">
             <option value="0">Selecciona un folio</option>
         </select>
-        <button id="foliosBtn">Mostrar Folios</button>
         <button id="cerrarSesion">Cerrar Sesion</button>
     </div>
     <main>
         <div id="formularioVista">
-            <form id="form">
+            <form id="formModificar">
+                <label for="Usuario">Usuario:</label>
+                <input type="text" name="Usuario" id="usuarioFolio" disabled>
                 <label for="nombreChofer">Nombre Chofer</label>
-                <input type="text" name="nombreChofer" id="nombreChofer" required disabled>
+                <input type="text" name="nombreChofer" id="nombreChofer"  disabled>
                 <label for="cliente">Cliente:</label>
-                <input type="text" name="cliente" id="cliente" required disabled>
+                <input type="text" name="cliente" id="cliente" disabled>
                 <label for="direccionCliente">Direccion de entrega:</label>
-                <input type="text" id="direccionCliente" disabled required>
+                <input type="text" id="direccionCliente" disabled>
                 <label for="atencionA">Con atencion a:</label>
-                <input type="text" id="atencionA"  required disabled>
+                <input type="text" id="atencionA"  disabled>
                 <label for="numeroPedido">N° Pedido: </label>
-                <input type="text" id="numeroPedido" required disabled>
+                <input type="text" id="numeroPedido" disabled>
                 <label for="quienSolicita">Quien solicita:</label>
-                <input type="text" id="quienSolicita"  required disabled>
+                <input type="text" id="quienSolicita"  disabled>
                 <label for="motivoSalida">Motivo de salida</label>
                 <input type="text" id="motivoSalida" disabled >
                 <label for="observaciones">Observacion</label>
                 <input type="text" id="observaciones" disabled>
-                <button id="guardar" disabled>Guardar</button>
-                <button id="editar" disabled>Editar</button>
-            </form>
-        </div>
-        <div class="imprimirListadoVista" id="imprimirListadoVista">
-            <div class="contenidoListaVista" id="contenidoListaVista">
                 <h1>Salida De Material</h1>
                 <table id="verListadoVista">
                     <thead>
@@ -59,9 +54,9 @@
                     </tbody>
                 </table>
                 <button id="imprimir">Imprimir</button>
+                <button id="guardar">Guardar</button>
                 <button id="editar">Editar</button>
-                <button id="regresar">Regresar</button>
-            </div>
+            </form>
         </div>
     </main>
     <div class="overlay" id="overlay"></div>
@@ -76,5 +71,6 @@
           <span>Elaborado por Ing de Costos</span>
           <img src="../img/CLUSTERtransparente.png" alt="Logo">
       </footer>
+      <script src="../js/edicion.js"></script>
 </body>
 </html>

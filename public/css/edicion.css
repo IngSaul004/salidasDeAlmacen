@@ -49,6 +49,85 @@ main {
   color: #333;
 }
 
+#menu select{
+  width: 10%;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#menu button{
+  margin: 10px;
+}
+
+/* === ESTILOS ADAPTADOS PARA FORMULARIO DE MODIFICAR SALIDA === */
+
+#formModificar {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#contenedorFormulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Agrupación general de campos */
+#formModificar label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#formModificar input,
+#formModificar select,
+#formModificar textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Tabla de materiales */
+#formModificar table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#formModificar th,
+#formModificar td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+#formModificar thead {
+  background-color: #7ea1c4;
+  color: white;
+}
+
+/* Botones al final del formulario */
+#formModificar .botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
 /* === BOTONES GENERALES === */
 button {
   padding: 8px 16px;

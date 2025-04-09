@@ -204,6 +204,56 @@ router.post('/registrarSalida', (req, res) => {
       }
     );
   });
+
+  router.get('/folios', (req, res) => {
+    db.query('SELECT Folio FROM folio', (err, results) => {
+      if (err) {
+        console.error('Error al obtener folios:', err);
+        return res.status(500).json({ error: 'Error al obtener folios' });
+      }
+      res.json(results); // esto devuelve un array de objetos: [{Folio: 1}, {Folio: 2}, ...]
+    });
+  });
+
+
+  router.get('/folios/:folio', (req, res) => {
+    const folio = req.params.folio;
+  
+    // Primero obtenemos los datos de la salida con el JOIN para obtener el nombre del usuario
+    const querySalidas = `
+    SELECT salidas.*, usuarios.Usuario AS UsuarioNombre
+    FROM salidas
+    JOIN usuarios ON salidas.Usuario_id = usuarios.id
+    WHERE salidas.Folio = ?`;
+  
+    db.query(querySalidas, [folio], (err, salidaResult) => {
+      if (err) {
+        console.error('Error al obtener datos de salidas:', err);
+        return res.status(500).json({ error: 'Error al obtener datos de salidas' });
+      }
+  
+      if (salidaResult.length === 0) {
+        return res.status(404).json({ error: 'No se encontró la salida para el folio especificado' });
+      }
+  
+      // Después obtenemos los materiales
+      const queryMateriales = 'SELECT * FROM materiales WHERE Folio = ?';
+  
+      db.query(queryMateriales, [folio], (err, materialesResult) => {
+        if (err) {
+          console.error('Error al obtener materiales:', err);
+          return res.status(500).json({ error: 'Error al obtener materiales' });
+        }
+  
+        res.json({
+          salida: salidaResult[0], // Solo tomamos el primer resultado (único folio)
+          materiales: materialesResult
+        });
+      });
+    });
+  });
+  
+  
   
   
 
