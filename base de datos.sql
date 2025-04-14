@@ -17,12 +17,15 @@
 -- Volcando estructura para tabla salidasalmacen.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Cliente` varchar(50) DEFAULT NULL,
-  `Direccion` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Cliente` varchar(100) DEFAULT NULL,
+  `Direccion` text DEFAULT NULL,
+  `Contacto` varchar(100) DEFAULT NULL,
+  `Numero` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Cliente` (`Cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla salidasalmacen.clientes: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla salidasalmacen.folio
 CREATE TABLE IF NOT EXISTS `folio` (
@@ -32,9 +35,9 @@ CREATE TABLE IF NOT EXISTS `folio` (
   PRIMARY KEY (`Folio`) USING BTREE,
   KEY `Usuario_id` (`Usuario_id`),
   CONSTRAINT `Usuario_id` FOREIGN KEY (`Usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla salidasalmacen.folio: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla salidasalmacen.materiales
 CREATE TABLE IF NOT EXISTS `materiales` (
@@ -48,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `materiales` (
   CONSTRAINT `folioMaterial` FOREIGN KEY (`Folio`) REFERENCES `folio` (`Folio`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla salidasalmacen.materiales: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla salidasalmacen.salidas
 CREATE TABLE IF NOT EXISTS `salidas` (
@@ -58,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `salidas` (
   `Cliente_nombre` varchar(50) DEFAULT NULL,
   `Direccion` varchar(255) DEFAULT NULL,
   `Atencion_a` varchar(100) DEFAULT NULL,
+  `Telefono` varchar(50) DEFAULT NULL,
   `Numero_Pedido` varchar(50) DEFAULT NULL,
   `Quien_solicita` varchar(100) DEFAULT NULL,
   `Motivo_salida` text DEFAULT NULL,
@@ -69,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `salidas` (
   CONSTRAINT `usuario` FOREIGN KEY (`Usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla salidasalmacen.salidas: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla salidasalmacen.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -81,9 +85,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `Correo` (`Correo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla salidasalmacen.usuarios: ~0 rows (aproximadamente)
-INSERT INTO `usuarios` (`id`, `Usuario`, `Contrasena`, `Correo`) VALUES
-	(1, 'saul', '$2a$10$It7HvpkDq14oq9HSUkLROut2YxTeENcGhA1BJFmqWzQNQtkpHhPv6', 'saul_rivera@ider.mx');
+-- La exportación de datos fue deseleccionada.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

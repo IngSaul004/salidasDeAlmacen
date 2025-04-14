@@ -2,6 +2,7 @@ const express = require("express");
 const bcryptjs = require("bcryptjs"); // Usamos bcryptjs consistentemente
 const db = require("./db"); // Importar la conexión a MySQL
 const path = require("path");
+const ExcelJS = require('exceljs');
 
 const router = express.Router();
 
@@ -384,13 +385,108 @@ router.get('/clienteListInfo/:Cliente', (req, res) => {
   });
 });
 
+router.post('/generarReporte', (req, res) => {
+  const { fechaInicial, fechaFinal, filtro } = req.body;
+  console.log('Ruta /generarReporte llamada');
 
+  // Construir la query dinámica para salidas
+  let query = `SELECT * FROM salidas WHERE Fecha BETWEEN ? AND ?`;
+  let params = [fechaInicial, fechaFinal];
+
+  // Agregar condición de filtro si aplica
+  if (filtro === 'Otros') {
+      query += ` AND Motivo_salida NOT IN ('Venta', 'Maquila', 'Traspaso')`;
+  } else if (filtro !== '0') {
+      query += ` AND Motivo_salida = ?`;
+      params.push(filtro);
+  }
+
+  db.query(query, params, (err, salidas) => {
+      if (err) {
+          console.error('Error al obtener salidas:', err);
+          return res.status(500).send('Error al consultar salidas');
+      }
+
+      if (salidas.length === 0) {
+          return res.status(404).send('No se encontraron salidas en ese rango');
+      }
+
+      const folios = salidas.map(s => s.Folio);
+
+      // Consultar materiales relacionados con los folios encontrados
+      const queryMateriales = `SELECT * FROM materiales WHERE Folio IN (?)`;
+
+      db.query(queryMateriales, [folios], (err, materiales) => {
+          if (err) {
+              console.error('Error al obtener materiales:', err);
+              return res.status(500).send('Error al consultar materiales');
+          }
+
+          // Preparar el Excel
+          const workbook = new ExcelJS.Workbook();
+          const worksheet = workbook.addWorksheet('Reporte Salidas');
+
+          worksheet.columns = [
+              { header: 'Folio', key: 'Folio' },
+              { header: 'Chofer', key: 'Chofer_nombre' },
+              { header: 'Cliente', key: 'Cliente_nombre' },
+              { header: 'Dirección', key: 'Direccion' },
+              { header: 'Atención a', key: 'Atencion_a' },
+              { header: 'Teléfono', key: 'Telefono' },
+              { header: 'Pedido', key: 'Numero_Pedido' },
+              { header: 'Solicita', key: 'Quien_solicita' },
+              { header: 'Motivo', key: 'Motivo_salida' },
+              { header: 'Observaciones', key: 'Observaciones' },
+              { header: 'Fecha', key: 'Fecha' },
+              { header: 'Código', key: 'Codigo' },
+              { header: 'Descripción', key: 'Descripcion' },
+              { header: 'Cantidad', key: 'Cantidad' },
+              { header: 'UM', key: 'Um' },
+              { header: 'Obs. Material', key: 'Observacion' }
+          ];
+
+          // Relacionar materiales por folio
+          salidas.forEach(salida => {
+              const materialesDeSalida = materiales.filter(m => m.Folio === salida.Folio);
+
+              if (materialesDeSalida.length > 0) {
+                  materialesDeSalida.forEach(mat => {
+                      worksheet.addRow({
+                          ...salida,
+                          Codigo: mat.Codigo,
+                          Descripcion: mat.Descripcion,
+                          Cantidad: mat.Cantidad,
+                          Um: mat.Um,
+                          Observacion: mat.Observacion
+                      });
+                  });
+              } else {
+                  // Si no tiene materiales, igual agregar fila con datos generales
+                  worksheet.addRow({
+                      ...salida,
+                      Codigo: '',
+                      Descripcion: '',
+                      Cantidad: '',
+                      Um: '',
+                      Observacion: ''
+                  });
+              }
+          });
+
+          // Configurar las cabeceras para la descarga del archivo
+          res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+          res.setHeader('Content-Disposition', 'attachment; filename=ReporteSalidas.xlsx');
+
+          // Escribir el archivo y enviarlo como respuesta
+          workbook.xlsx.write(res).then(() => {
+              res.end();
+          }).catch(err => {
+              console.error('Error al generar Excel:', err);
+              res.status(500).send('Error al generar archivo Excel');
+          });
+      });
+  });
+});
 
   
-  
-  
-  
-  
-
-
 module.exports = router;

@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reporte.css">
     <title>Generar Reporte</title>
 </head>
 <body>
-    <h1 style="color: black; font-family: Arial, Helvetica, sans-serif; text-align: center;">MANTENIMIENTO</h1>
+    <div id="menu">
+        <h1>Generar Reporte</h1>
+        <label for="fechaInicial">Fecha Inicial</label>
+        <input type="date" id="fechaInicial">
+        <label for="fechaFinal">Fecha Final</label>
+        <input type="date" id="fechaFinal">
+        <select id="Filtro">
+            <option value="0">Selecciona un filtro</option>
+            <option value="Traspaso">Traspaso</option>
+            <option value="Venta">Venta</option>
+            <option value="Maquila">Maquila</option>
+            <option value="otros">Otros</option>
+        </select>
+        <button id="generarReporte">Generar Reporte</button>
+        <h1>Bienvenido: <span id="usuario"></span></h1>
+        <button id="cerrarSesion">Cerrar Sesion</button>
+        </div>
+        <script src="../js/reporte.js"></script>
 </body>
 </html>

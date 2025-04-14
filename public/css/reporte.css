@@ -1,0 +1,124 @@
+/* === ESTILO GLOBAL === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
+}
+
+/* === BARRA SUPERIOR === */
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 100;
+}
+
+#menu h1 {
+    margin: 5px 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+#menu span {
+    font-weight: bold;
+    color: #333;
+}
+
+#menu button {
+    margin-left: 50px;
+    padding: 5px;
+    background: #7ea1c4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#menu button:hover {
+    background: #5f85a2;
+}
+
+/* === ESTILOS PARA GENERAR REPORTE === */
+#menu label,
+#menu input[type="date"],
+#menu select {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+#menu input[type="date"],
+#menu select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+#menu input[type="date"]:focus,
+#menu select:focus {
+    border-color: #7ea1c4;
+    outline: none;
+}
+
+#generarReporte {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: #7ea1c4;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#generarReporte:hover {
+    background-color: #5f85a2;
+}
+
+/* Responsivo para filtros en barra superior */
+@media (max-width: 768px) {
+    #menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #menu label,
+    #menu input[type="date"],
+    #menu select,
+    #generarReporte,
+    #cerrarSesion {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #generarReporte,
+    #cerrarSesion {
+        width: auto;
+        align-self: flex-end;
+    }
+}
