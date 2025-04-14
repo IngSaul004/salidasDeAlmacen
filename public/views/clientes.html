@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Cliente</title>
+    <title>AGREGAR CLIENTE</title>
+    <link rel="stylesheet" href="../css/cliente.css">
 </head>
 <body>
-    <h1 style="color: black; font-family: Arial, Helvetica, sans-serif; text-align: center;">MANTENIMIENTO</h1>
+
+    <div class="menu-contenedor">
+        <h1>Agregar Cliente</h1>
+        <div class="botones">
+            <label for="Cliente">Cliente:</label>
+            <input type="text" name="Cliente" id="cliente" placeholder="Ingresa el cliente" required>
+            <label for="Direccion">Direccion:</label>
+            <input type="text" name="Direccion" id="direccion" placeholder="Ingresa la direccion" required>
+            <label for="Contacto">Contacto:</label>
+            <input type="text" name="Contacto" id="contacto" placeholder="Ingresa el contacto" required>
+            <label for="Numero">Numero telefonico:</label>
+            <input type="tel" name="Numero" id="numeroTelefonico" placeholder="Ingresa el numero de telefono" required>
+            <button id="registrarCliente" title="Modulo para registrar cliente">Agregar Cliente</button>
+            <button id="cerrarSesion" title="Boton para cerrar sesion">Cerrar sesión</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+  <div class="popup" id="popup">
+    <h2>Contacto Administradores</h2>
+    <p>📧 saul_rivera@ider.mx</p>
+    <p>📧 juan_llamas@ider.mx</p>
+    <button id="cerrar-btn">Cerrar</button>
+  </div>
+    <footer id="footer">
+        <span>Elaborado por Ing de Costos</span>
+        <img src="../img/CLUSTERtransparente.png" alt="Logo">
+    </footer>
+<script src="../js/menu.js"></script>
 </body>
 </html>

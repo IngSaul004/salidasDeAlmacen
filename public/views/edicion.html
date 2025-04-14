@@ -20,6 +20,7 @@
             <form id="formModificar">
                 <label for="Usuario">Usuario:</label>
                 <input type="text" name="Usuario" id="usuarioFolio" disabled>
+                <input type="hidden" name="UsuarioOculto" id="usuarioId" disabled>
                 <label for="nombreChofer">Nombre Chofer</label>
                 <input type="text" name="nombreChofer" id="nombreChofer"  disabled>
                 <label for="cliente">Cliente:</label>
@@ -53,9 +54,10 @@
                         
                     </tbody>
                 </table>
-                <button id="imprimir">Imprimir</button>
-                <button id="guardar">Guardar</button>
-                <button id="editar">Editar</button>
+                <button id="imprimir" type="button">Imprimir</button>
+                <button id="guardar" type="button">Guardar</button>
+                <button id="editar" type="button">Editar</button>
+                <button id="agregarFila" type="button">Agregar Fila</button>
             </form>
         </div>
     </main>

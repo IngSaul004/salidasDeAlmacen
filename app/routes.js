@@ -252,6 +252,98 @@ router.post('/registrarSalida', (req, res) => {
       });
     });
   });
+
+  router.post('/actualizarSalida', (req, res) => {
+    const { folio, usuario_id, fecha, datosGenerales, materiales } = req.body;
+  
+    // Actualizar `folio`
+    db.query(
+      'UPDATE folio SET Usuario_id = ?, Fecha = ? WHERE Folio = ?',
+      [usuario_id, fecha, folio],
+      (err) => {
+        if (err) {
+          console.error("Error al actualizar folio: ", err);  // Esto mostrará más detalles en la consola
+          return res.status(500).json({ ok: false, error: 'Error al actualizar folio' });
+        }
+    
+        // Actualizar `salidas`
+        db.query(
+          `UPDATE salidas SET
+            Usuario_id = ?,
+            Chofer_nombre = ?,
+            Cliente_nombre = ?,
+            Direccion = ?,
+            Atencion_a = ?,
+            Numero_Pedido = ?,
+            Quien_solicita = ?,
+            Motivo_salida = ?,
+            Observaciones = ?,
+            Fecha = ?
+          WHERE Folio = ?`,
+          [
+            usuario_id,
+            datosGenerales.Chofer_nombre,
+            datosGenerales.Cliente_nombre,
+            datosGenerales.Direccion,
+            datosGenerales.Atencion_a,
+            datosGenerales.Numero_Pedido,
+            datosGenerales.Quien_solicita,
+            datosGenerales.Motivo_salida,
+            datosGenerales.Observaciones,
+            fecha,
+            folio
+          ],
+          (err) => {
+            if (err) {
+              console.error("Error al actualizar salidas: ", err);
+              return res.status(500).json({ ok: false, error: 'Error al actualizar salidas' });
+            }
+    
+            // Borrar materiales anteriores
+            db.query(
+              'DELETE FROM materiales WHERE Folio = ?',
+              [folio],
+              (err) => {
+                if (err) {
+                  console.error("Error al limpiar materiales: ", err);
+                  return res.status(500).json({ ok: false, error: 'Error al limpiar materiales' });
+                }
+    
+                // Insertar materiales nuevos
+                if (materiales.length === 0) {
+                  return res.json({ ok: true, mensaje: 'Salida actualizada sin materiales' });
+                }
+    
+                let insertsPendientes = materiales.length;
+                let errorEncontrado = false;
+    
+                materiales.forEach((mat) => {
+                  db.query(
+                    `INSERT INTO materiales (Folio, Codigo, Descripcion, Cantidad, Um, Observacion)
+                     VALUES (?, ?, ?, ?, ?, ?)`,
+                    [folio, mat.Codigo, mat.Descripcion, mat.Cantidad, mat.Um, mat.Observacion],
+                    (err) => {
+                      if (err && !errorEncontrado) {
+                        errorEncontrado = true;
+                        console.error("Error al insertar material: ", err);  // Aquí también lo mostramos
+                        return res.status(500).json({ ok: false, error: 'Error al insertar materiales' });
+                      }
+    
+                      insertsPendientes--;
+                      if (insertsPendientes === 0 && !errorEncontrado) {
+                        res.json({ ok: true, mensaje: 'Salida actualizada correctamente' });
+                      }
+                    }
+                  );
+                });
+              }
+            );
+          }
+        );
+      }
+    );    
+  });
+  
   
   
   
