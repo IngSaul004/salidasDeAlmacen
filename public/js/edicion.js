@@ -9,14 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const editarBtn = document.getElementById('editar');
   const guardarBtn = document.getElementById('guardar');
   const agregarFilaBtn = document.getElementById('agregarFila');
-  const mostrarFolioBtn = document.getElementById('foliosBtn');
   const cerrarSesionBtn = document.getElementById('cerrarSesion');
   const selectFolios = document.getElementById('folios');
+  const borrar = document.getElementsByClassName('borrarFila');
 
   // Estado inicial
   editarBtn.disabled = true;
   guardarBtn.disabled = true;
   agregarFilaBtn.disabled = true;
+  borrar.disabled = true;
 
   // Obtener usuario
   fetch('/ObtenerUsuario')
@@ -64,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Cargar info del folio
   // Cargar la información del folio y actualizar datosGenerales
   function cargarInfoFolio(folio) {
     fetch(`/folios/${folio}`)
@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('cliente').value = salida.Cliente_nombre || '';
         document.getElementById('direccionCliente').value = salida.Direccion || '';
         document.getElementById('atencionA').value = salida.Atencion_a || '';
+        document.getElementById('numeroTelefonico').value = salida.Telefono || '';
         document.getElementById('numeroPedido').value = salida.Numero_Pedido || '';
         document.getElementById('quienSolicita').value = salida.Quien_solicita || '';
         document.getElementById('motivoSalida').value = salida.Motivo_salida || '';
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
           Cliente_nombre: salida.Cliente_nombre || '',
           Direccion: salida.Direccion || '',
           Atencion_a: salida.Atencion_a || '',
+          Telefono: salida.Telefono || '',
           Numero_Pedido: salida.Numero_Pedido || '',
           Quien_solicita: salida.Quien_solicita || '',
           Motivo_salida: salida.Motivo_salida || '',
@@ -115,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         editarBtn.disabled = false;
-        agregarFilaBtn.disabled = false;
       })
       .catch(err => console.error('Error al cargar info del folio:', err));
   }
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('#verListadoVista tbody td').forEach(td => td.setAttribute('contenteditable', 'true'));
     guardarBtn.disabled = false;
     agregarFilaBtn.disabled = false;
+    borrar.disabled = false;
   });
 
   // Agregar fila
@@ -171,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Cliente_nombre: document.getElementById('cliente').value,
       Direccion: document.getElementById('direccionCliente').value,
       Atencion_a: document.getElementById('atencionA').value,
+      Telefono: document.getElementById('numeroTelefonico').value,
       Numero_Pedido: document.getElementById('numeroPedido').value,
       Quien_solicita: document.getElementById('quienSolicita').value,
       Motivo_salida: document.getElementById('motivoSalida').value,
@@ -219,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Cliente_nombre: document.getElementById('cliente').value,
       Direccion: document.getElementById('direccionCliente').value,
       Atencion_a: document.getElementById('atencionA').value,
+      Telefono: document.getElementById('numeroTelefonico').value,
       Numero_Pedido: document.getElementById('numeroPedido').value,
       Quien_solicita: document.getElementById('quienSolicita').value,
       Motivo_salida: document.getElementById('motivoSalida').value,
@@ -266,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div style="width: 48%; margin-bottom: 15px;">Cliente: ${arrayForm1[0].Cliente_nombre}</div>
           <div style="width: 48%; margin-bottom: 15px;">Dirección: ${arrayForm1[0].Direccion}</div>
           <div style="width: 48%; margin-bottom: 15px;">Atención: ${arrayForm1[0].Atencion_a}</div>
+          <div style="width: 48%; margin-bottom: 15px;">Numero Telefonico: ${arrayForm1[0].Telefono}</div>
           <div style="width: 48%; margin-bottom: 15px;">Pedido: ${arrayForm1[0].Numero_Pedido}</div>
           <div style="width: 48%; margin-bottom: 15px;">Solicitante: ${arrayForm1[0].Quien_solicita}</div>
           <div style="width: 48%; margin-bottom: 15px;">Motivo de Salida: ${arrayForm1[0].Motivo_salida}</div>

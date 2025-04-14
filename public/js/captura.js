@@ -24,6 +24,51 @@ fetch('/ObtenerUsuario')
     document.getElementById('usuarioSpan').textContent = 'Error al obtener usuario';
   });
 
+  window.onload = cargarClientes();
+  function cargarClientes() {
+    const selectCliente = document.getElementById('listaCliente');
+    fetch('/clienteList')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        data.forEach(f => {
+          const option = document.createElement('option');
+          option.value = f.Cliente;
+          option.textContent = f.Cliente;
+          selectCliente.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error al cargar los folios:', error));
+  }
+
+  // Cambiar folio
+  document.getElementById('listaCliente').addEventListener('change', function () {
+    const cliente = this.value;
+    if (cliente) {
+      cargarInfoCliente(cliente);
+      this.disabled = true; // Deshabilitar select al elegir
+    }
+  });
+
+  function cargarInfoCliente(cliente) {
+    fetch(`/clienteListInfo/${cliente}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          const clienteInfo = data[0];
+  
+          document.getElementById('direccionCliente').value = clienteInfo.Direccion || '';
+          document.getElementById('atencionA').value = clienteInfo.Contacto || '';
+          document.getElementById('numeroTelefonico').value = clienteInfo.Numero || '';
+        } else {
+          console.warn('Cliente no encontrado');
+        }
+      })
+      .catch(err => console.error('Error al cargar info del cliente:', err));
+  }
+  
+
+
 
 
 //llamada al endpoint de ultimo folio para obtenerlo
@@ -94,6 +139,7 @@ document.getElementById('footer').addEventListener('click', function(){
   const listaCliente = document.getElementById('listaCliente').value;
   const direccionCliente = document.getElementById('direccionCliente').value;
   const atencionA = document.getElementById('atencionA').value;
+  const telefono = document.getElementById('numeroTelefonico').value;
   const numeroPedido = document.getElementById('numeroPedido').value;
   const quienSolicita = document.getElementById('quienSolicita').value;
   const otrosText = document.getElementById('otrosText').value;
@@ -131,6 +177,7 @@ document.getElementById('footer').addEventListener('click', function(){
             Lista_Cliente: listaCliente,
             Direccion_Cliente: direccionCliente,
             Atencion_A: atencionA,
+            Telefono: telefono,
             Numero_Pedido: numeroPedido,
             Quien_Solicita: quienSolicita,
             Motivo_Salida: otrosText,
@@ -145,6 +192,7 @@ document.getElementById('footer').addEventListener('click', function(){
             Lista_Cliente: listaCliente,
             Direccion_Cliente: direccionCliente,
             Atencion_A: atencionA,
+            Telefono: telefono,
             Numero_Pedido: numeroPedido,
             Quien_Solicita: quienSolicita,
             Motivo_Salida: radios.value,
@@ -266,6 +314,7 @@ document.getElementById('imprimir').addEventListener('click', function() {
       <div style="width: 48%; margin-bottom: 15px;">Cliente: ${arrayForm1[0].Lista_Cliente}</div>
       <div style="width: 48%; margin-bottom: 15px;">Dirección: ${arrayForm1[0].Direccion_Cliente}</div>
       <div style="width: 48%; margin-bottom: 15px;">Atención: ${arrayForm1[0].Atencion_A}</div>
+       <div style="width: 48%; margin-bottom: 15px;">Telefono: ${arrayForm1[0].Telefono}</div>
       <div style="width: 48%; margin-bottom: 15px;">Pedido: ${arrayForm1[0].Numero_Pedido}</div>
       <div style="width: 48%; margin-bottom: 15px;">Solicitante: ${arrayForm1[0].Quien_Solicita}</div>
       <div style="width: 48%; margin-bottom: 15px;">Motivo de Salida: ${arrayForm1[0].Motivo_Salida}</div>

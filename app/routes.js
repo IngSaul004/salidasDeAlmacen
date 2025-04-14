@@ -135,7 +135,7 @@ router.get('/UltimoFolio', (req, res) => {
 
 router.post('/registrarSalida', (req, res) => {
     const { datosForm, materiales } = req.body;  // Desestructuración de los datos recibidos
-    const { Usuario, Nombre_Chofer, Lista_Cliente, Direccion_Cliente, Atencion_A, Numero_Pedido, Quien_Solicita, Motivo_Salida, Observaciones, Fecha } = datosForm;
+    const { Usuario, Nombre_Chofer, Lista_Cliente, Direccion_Cliente, Atencion_A, Telefono, Numero_Pedido, Quien_Solicita, Motivo_Salida, Observaciones, Fecha } = datosForm;
   
     // Obtener el id del usuario de la sesión
     const usuarioId = req.session.user ? req.session.user.id : null;
@@ -161,9 +161,9 @@ router.post('/registrarSalida', (req, res) => {
         // Insertar en salidas
         db.query(
           `INSERT INTO salidas 
-           (Folio, Usuario_id, Chofer_nombre, Cliente_nombre, Direccion, Atencion_a, Numero_Pedido, Quien_solicita, Motivo_salida, Observaciones, Fecha) 
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [folioGenerado, usuarioId, Nombre_Chofer, Lista_Cliente, Direccion_Cliente, Atencion_A, Numero_Pedido, Quien_Solicita, Motivo_Salida, Observaciones, fechaActual],
+           (Folio, Usuario_id, Chofer_nombre, Cliente_nombre, Direccion, Atencion_a, Telefono, Numero_Pedido, Quien_solicita, Motivo_salida, Observaciones, Fecha) 
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [folioGenerado, usuarioId, Nombre_Chofer, Lista_Cliente, Direccion_Cliente, Atencion_A,Telefono, Numero_Pedido, Quien_Solicita, Motivo_Salida, Observaciones, fechaActual],
           (err) => {
             if (err) {
               console.error('Error al insertar en salidas:', err);
@@ -274,6 +274,7 @@ router.post('/registrarSalida', (req, res) => {
             Cliente_nombre = ?,
             Direccion = ?,
             Atencion_a = ?,
+            Telefono = ?,
             Numero_Pedido = ?,
             Quien_solicita = ?,
             Motivo_salida = ?,
@@ -286,6 +287,7 @@ router.post('/registrarSalida', (req, res) => {
             datosGenerales.Cliente_nombre,
             datosGenerales.Direccion,
             datosGenerales.Atencion_a,
+            datosGenerales.Telefono,
             datosGenerales.Numero_Pedido,
             datosGenerales.Quien_solicita,
             datosGenerales.Motivo_salida,
@@ -343,6 +345,47 @@ router.post('/registrarSalida', (req, res) => {
       }
     );    
   });
+
+
+
+  // Ruta para registrar nuevos usuarios
+router.post("/registrarCliente", (req, res) => {
+  const { cliente, direccion, contacto, numeroTelefonico} = req.body;
+  
+  const sql = "INSERT INTO clientes (Cliente, Direccion, Contacto, Numero ) VALUES (?, ?, ?, ?)";
+  db.query(sql, [cliente, direccion, contacto, numeroTelefonico], (err, result) => {
+      if (err) return res.status(500).json({ success: false, mensaje: "Error al registrar usuario" });
+
+      res.json({ success: true, mensaje: "Usuario registrado correctamente" });
+  });
+});
+
+//obtener cliente para la lista
+router.get('/clienteList', (req, res) => {
+  db.query('SELECT Cliente FROM clientes', (err, results) => {
+    if (err) {
+      console.error('Error al obtener el cliente:', err);
+      return res.status(500).json({ error: 'Error al obtener el cliente' });
+    }
+    res.json(results); // esto devuelve un array de objetos: [{Folio: 1}, {Folio: 2}, ...]
+  });
+});
+
+router.get('/clienteListInfo/:Cliente', (req, res) => {
+  const cliente = req.params.Cliente; // <-- obtener el parámetro de la URL
+
+  db.query('SELECT * FROM clientes WHERE Cliente = ?', [cliente], (err, results) => {
+    if (err) {
+      console.error('Error al obtener la información del cliente:', err);
+      return res.status(500).json({ error: 'Error al obtener el cliente' });
+    }
+
+    res.json(results); // Devuelve un array de objetos
+  });
+});
+
+
+
   
   
   

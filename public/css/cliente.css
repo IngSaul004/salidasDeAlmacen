@@ -1,19 +1,66 @@
-/* Estructura general */
+/* === ESTILO GLOBAL === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #dfe9f3, #a6c1ee);
 }
 
-/* Contenedor del menú */
+/* === BARRA SUPERIOR === */
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 100;
+}
+
+#menu h1 {
+    margin: 5px 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+#menu span {
+    font-weight: bold;
+    color: #333;
+}
+
+#menu button {
+    margin-left: 50px;
+    padding: 5px;
+    background: #7ea1c4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#menu button:hover {
+    background: #5f85a2;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
 .menu-contenedor {
     background: rgba(255, 255, 255, 0.8);
     padding: 30px;
@@ -23,26 +70,25 @@ body {
     max-width: 400px;
     width: 100%;
     backdrop-filter: blur(10px);
+    margin-top: 100px; /* para que no quede tapado por el menú fijo */
 }
 
-/* Título */
 .menu-contenedor h1 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #444;
 }
 
-/* Estilos para labels */
+/* === FORMULARIOS === */
 label {
     font-size: 16px;
     color: #444;
     margin-bottom: 8px;
-    display: block; /* Asegura que cada label esté en su propia línea */
-    text-align: left;
     margin-top: 10px;
+    display: block;
+    text-align: left;
 }
 
-/* Estilos para los inputs */
 input[type="text"],
 input[type="tel"] {
     padding: 12px;
@@ -50,8 +96,7 @@ input[type="tel"] {
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
-    margin-bottom: 15px; /* Espacio entre los campos */
-    box-sizing: border-box;
+    margin-bottom: 15px;
     background-color: #f9f9f9;
 }
 
@@ -61,7 +106,7 @@ input[type="tel"]:focus {
     outline: none;
 }
 
-/* Estilos para los botones */
+/* === BOTONES === */
 .botones {
     display: flex;
     flex-direction: column;
@@ -78,16 +123,13 @@ input[type="tel"]:focus {
     font-size: 18px;
     cursor: pointer;
     transition: background 0.3s;
-    width: 100%;
-    text-transform: uppercase; /* Para los botones en mayúsculas */
-    font-weight: bold;
 }
 
 .botones button:hover {
     background: #688fb1;
 }
 
-/* Footer fijo abajo con imagen a la derecha */
+/* === FOOTER === */
 footer {
     position: absolute;
     bottom: 10px;
@@ -100,7 +142,7 @@ footer {
 }
 
 footer span {
-    margin-right: 10px; /* Espacio entre el texto y la imagen */
+    margin-right: 10px;
     cursor: pointer;
 }
 
@@ -109,11 +151,10 @@ footer img {
     max-height: 20px;
     width: auto;
     max-width: 100%;
-    margin-bottom: 0px;
     object-fit: contain;
 }
 
-/* --- Estilos para el popup de contacto --- */
+/* === POPUP DE CONTACTO === */
 .popup {
     display: none;
     position: fixed;
@@ -131,7 +172,6 @@ footer img {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .popup h2 {
@@ -159,14 +199,13 @@ footer img {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
-    align-self: center;
 }
 
 .popup button:hover {
     background-color: #5f85a2;
 }
 
-/* Fondo oscuro detrás del popup */
+/* Fondo oscuro del popup */
 .overlay {
     display: none;
     position: fixed;
@@ -178,7 +217,7 @@ footer img {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Responsivo */
+/* === RESPONSIVO === */
 @media (max-width: 768px) {
     .menu-contenedor {
         width: 90%;
