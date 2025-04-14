@@ -385,7 +385,7 @@ router.get('/clienteListInfo/:Cliente', (req, res) => {
   });
 });
 
-router.post('/generarReporte', (req, res) => {
+router.post('/generarReporteSalida', (req, res) => {
   const { fechaInicial, fechaFinal, filtro } = req.body;
   console.log('Ruta /generarReporte llamada');
 

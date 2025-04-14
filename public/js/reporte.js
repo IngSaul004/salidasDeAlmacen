@@ -1,3 +1,35 @@
+    // Obtener usuario
+    fetch('/ObtenerUsuario')
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.usuario) {
+        document.getElementById('usuario').textContent = data.usuario.Usuario;
+      } else {
+        document.getElementById('usuarioSpan').textContent = 'Usuario no encontrado';
+      }
+    })
+    .catch(error => {
+      console.error('Error al obtener el usuario:', error);
+    });
+
+
+    document.getElementById('cerrarSesion').addEventListener('click', function(){
+        fetch('/logout');
+        window.location.href = "/";
+     });
+
+     
+document.getElementById('footer').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "flex";
+ });
+
+ document.getElementById('cerrar-btn').addEventListener('click', function(){
+    const popup = document.getElementById('popup');
+    popup.style.display = "none";
+ });  
+
+
 document.getElementById('generarReporte').addEventListener('click', async () => {
     const fechaInicial = document.getElementById('fechaInicial').value;
     const fechaFinal = document.getElementById('fechaFinal').value;
@@ -10,7 +42,7 @@ document.getElementById('generarReporte').addEventListener('click', async () => 
     }
 
     try {
-        const response = await fetch('/generarReporte', {
+        const response = await fetch('/generarReporteSalida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
