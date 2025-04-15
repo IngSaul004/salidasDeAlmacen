@@ -336,10 +336,10 @@ document.getElementById('imprimir').addEventListener('click', function() {
           <tbody>
               ${arrayMaterial.map(material => `
                   <tr>
-                      <td>${material.Codigo}</td>
-                      <td>${material.Descripcion}</td>
-                      <td>${material.Um}</td>
                       <td>${material.Cantidad}</td>
+                      <td>${material.Um}</td>
+                      <td>${material.Descripcion}</td>
+                      <td>${material.Codigo}</td>
                       <td>${material.Observacion}</td>
                   </tr>
               `).join('')}

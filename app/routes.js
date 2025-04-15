@@ -387,8 +387,6 @@ router.get('/clienteListInfo/:Cliente', (req, res) => {
 
 router.post('/generarReporteSalida', (req, res) => {
   const { fechaInicial, fechaFinal, filtro } = req.body;
-  console.log('Ruta /generarReporteSalida llamada');
-
   // Asegúrate de establecer las fechas a inicio y fin del día para ignorar la hora
   const fechaInicioFormateada = `${fechaInicial} 00:00:00`;
   const fechaFinalFormateada = `${fechaFinal} 23:59:59`;

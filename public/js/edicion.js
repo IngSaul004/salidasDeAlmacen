@@ -11,13 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const agregarFilaBtn = document.getElementById('agregarFila');
   const cerrarSesionBtn = document.getElementById('cerrarSesion');
   const selectFolios = document.getElementById('folios');
-  const borrar = document.getElementsByClassName('borrarFila');
 
   // Estado inicial
   editarBtn.disabled = true;
   guardarBtn.disabled = true;
   agregarFilaBtn.disabled = true;
-  borrar.disabled = true;
 
   // Obtener usuario
   fetch('/ObtenerUsuario')
@@ -137,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('#verListadoVista tbody td').forEach(td => td.setAttribute('contenteditable', 'true'));
     guardarBtn.disabled = false;
     agregarFilaBtn.disabled = false;
-    borrar.disabled = false;
+
   });
 
   // Agregar fila
@@ -305,8 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const printWindow = window.open('', 'Imprimir Salida', 'height=600,width=800');
     printWindow.document.open();
-    printWindow.document.write(`<!DOCTYPE html>
-    <html>
+    printWindow.document.write(`<html>
     <head>
         <title>Reporte de Salida de Material</title>
         <style>
@@ -317,10 +314,6 @@ document.addEventListener('DOMContentLoaded', function () {
             h1 {
                 text-align: center;
                 margin-bottom: 20px;
-                font-size: 16px;
-            }
-            h2 {
-                font-size: 10px;
             }
             table {
                 width: 100%;
@@ -331,7 +324,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 border: 1px solid #ddd;
                 padding: 8px;
                 text-align: left;
-                font-size: 12px;
             }
             th {
                 background-color: #f2f2f2;
@@ -341,16 +333,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 display: flex;
                 justify-content: space-between;
             }
-            .firma-box {
+            .firma div {
                 width: 48%;
                 text-align: center;
             }
-            .firma-line {
-                border-top: 1px solid #000;
-                margin-top: 10px;
-                width: 100px;
-                margin: 10px auto 0 auto;
-            }
+             .firma-box {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.firma-line {
+border-top: 1px solid #000;
+margin-top: 10px;
+width: 100px; /* Ajusta el ancho de la línea según sea necesario */
+margin-left: auto;
+margin-right: auto;
+}
             .logo {
                 text-align: right;
                 margin-bottom: 20px;
@@ -358,42 +356,47 @@ document.addEventListener('DOMContentLoaded', function () {
             .logo img {
                 width: 40px;
                 height: auto;
+                margin-top: -80;
             }
             @media print {
                 body {
                     margin: 0;
                     padding: 0;
                 }
+                h1 {
+                    font-size: 16px;
+                }
                 table {
+                    width: 100%;
                     border: 1px solid #000;
                 }
                 th, td {
-                    font-size: 10px;
+                    font-size: 12px;
                 }
             }
         </style>
     </head>
     <body>
-        <h1>IMPULSORA INDUSTRIAL DE REFRIGERACIÓN SA DE CV</h1>
-        <h2 style="text-align: left; width: 50%;">CALLE MAIZ 43 C. GRANJAS ESMERALDA. CIUDAD DE 09640 IZTAPALAPA 55-5445-7875</h2>
-        <h2 style="text-align: right; width: 45%; float: right; margin-top: -30px;">CARR.-TESISTAN # 8837 COL. PREDIO POTRERO GRANDE ZAPOPAN, JAL. C.P. 45200 TEL / FAX 3836-06-00</h2>
+        <h1 style="font-size: 16px;">IMPULSORA INDUSTRIAL DE REFIRGERACION SA DE CV</h1>
+        <h2 style="font-size: 10px; text-align: left; width: 190px; margin-top: 30px;">CALLE MAIZ 43 C. GRANJAS ESMERALDA. CIUDAD DE 09640 IZTAPALAPA 55-5445-7875</h2>
+        <h2 style="font-size: 10px;  width: 230px; margin-top: -40; margin-left: 80%;">CARR.-TESISTAN # 8837 COL. PREDIO POTRERO GRANDE ZAPOPAN, JAL. C.P. 45200 TEL / FAX 3836-06-00</h2>
         <div class="logo">
             <img src="../img/IDERimago.png" alt="Logo Institucional">
         </div>
         ${contenidoFormulario}
-        ${contenidoMateriales}
+                ${contenidoMateriales}
         <div class="firma">
-            <div class="firma-box">
-                <div class="firma-line"></div>
-                Firma Personal de Almacén General
-            </div>
-            <div class="firma-box">
-                <div class="firma-line"></div>
-                Nombre y Firma de quien recibe
-            </div>
-        </div>
+<div class="firma-box">
+<div class="firma-line"></div>
+Firma Personal de Almacén General
+</div>
+<div class="firma-box">
+<div class="firma-line"></div>
+Nombre y Firma de quien recibe
+</div>
+</div>
     </body>
-    </html>`);
+</html>`);
     printWindow.document.close();
 
     // Imprimir y cerrar
