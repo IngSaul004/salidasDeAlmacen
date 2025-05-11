@@ -3,7 +3,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const path = require("path");
 const routes = require("./app/routes.js"); // Importar rutas
-const ExcelJS = require('exceljs');
+
 
 const app = express();
 
